@@ -1,7 +1,11 @@
-let who = ["The dog", "My grandma", "His turtle", "My bird"];
-let action = ["ate", "peed", "crushed", "broke"];
-let what = ["my homework", "the keys", "the car"];
-let when = [
+window.onload = function() {
+  document.querySelector("#excuse").innerHTML = generateExcuse(excuse);
+};
+
+const who = ["The dog", "A raccoon", "My grandma", "His turtle", "My bird"];
+const action = ["ate", "peed", "abduct", "crushed", "broke"];
+const what = ["my homework", "my laptop", "my brain", "the keys", "the car"];
+const when = [
   "before the class",
   "right on time",
   "when I finished",
@@ -9,56 +13,15 @@ let when = [
   "while I was praying"
 ];
 
-// LA TERCERA VERSION
-
-let array = ["who", "action", "what", "when"];
-let excuse = [];
-
-const RandmIndex = arr => Math.floor(Math.random() * (arr.length - 1));
-const Item = (arr, i) => arr[i];
-const JoinArrElements = (arr, delimiter) => arr.join(delimiter);
-
-const randomExcuse = array_of_arrays => {
-  for (let value of array) {
-    let item = Item(value, RandomIndex(value));
-    excuse.push(item);
+const excuse = [who, action, what, when];
+const RandomIndex = arr => Math.floor(Math.random() * arr.length);
+const RandomItem = (arr, i) => arr[i];
+const GenerateString = arr => RandomItem(arr, RandomIndex(arr));
+const generateExcuse = arr => {
+  let str = "";
+  for (const val of arr) {
+    str += GenerateString(val) + " ";
   }
-
-  return JoinArrElements(excuse, " ");
+  return str;
 };
-
-console.log("excuse");
-
-// LA SEGUNDA VERSION
-
-// let array = ["who", "action", "what", "when"];
-// let excuse = [];
-
-// const random_excuse = (array) =>
-// {
-//     for (let element of array){
-//       excuse.push(value[Math.floor(Math.random() * (value.length - 1))]);
-
-//       return excuse.join (" ");
-//     }
-
-// }
-
-// console.log (random_excuse)
-
-// LA PRIMER VERSION
-
-// const generate_random_excuse = (who, action, what, when) => {
-//   var random_who = who[Math.floor(Math.random() * (who.length - 1))];
-//   var random_action = action[Math.floor(Math.random() * (action.length - 1))];
-//   var random_what = what[Math.floor(Math.random() * (what.length - 1))];
-//   var random_when = when[Math.floor(Math.random() * (when.length - 1))];
-
-//   var random = [Math.floor(Math.random() * (who.length - 1))];
-
-//   return (
-//     random_who + " " + random_action + " " + random_what + " " + random_when
-//   );
-// };
-
-// console.log(generate_random_excuse(who, action, what, when));
+console.log(generateExcuse(excuse));
